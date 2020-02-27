@@ -1,0 +1,21 @@
+{
+    "hosts": [
+        {
+            "name": "______name1",
+            "ip": "000.000.000.000",
+            "port": "22",
+            "user": "user_____1",
+            "password": "pass_____1"
+        }
+    ],
+    "files": [
+        {
+            "src": "test",
+            "dest": "/home/mjin/test"
+        },
+        {
+            "src": "testFile1",
+            "dest": "/home/mjin/testFile1"
+        }
+    ]
+}
