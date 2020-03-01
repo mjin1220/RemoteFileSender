@@ -81,6 +81,22 @@ func selectHosts(config *Config) {
 			return
 		}
 
+		if trimedLine == "-" || trimedLine == "+" {
+			selected := true
+			if trimedLine == "-" {
+				selected = false
+			}
+
+			for _, h := range config.Hosts {
+				h.isSelected = selected
+			}
+
+			clearTerminal()
+			fmt.Print(getIntroStr())
+			fmt.Print(config.Hosts, " > ")
+			continue
+		}
+
 		for _, v := range strings.Fields(line) {
 			i, err := strconv.ParseInt(v, 10, 64)
 			if err != nil {
@@ -130,6 +146,22 @@ func selectFiles(config *Config) bool {
 		if trimedLine == "n" || trimedLine == "next" {
 			clearTerminal()
 			return true
+		}
+
+		if trimedLine == "-" || trimedLine == "+" {
+			selected := true
+			if trimedLine == "-" {
+				selected = false
+			}
+
+			for _, f := range config.Files {
+				f.isSelected = selected
+			}
+
+			clearTerminal()
+			fmt.Print(getIntroStr())
+			fmt.Print(config.Files, " > ")
+			continue
 		}
 
 		for _, v := range strings.Fields(line) {
@@ -282,9 +314,9 @@ func sendFiles(config *Config) {
 	fmt.Printf("Failed Files: %d\n", len(failedFiles))
 }
 
-func saveConfig() {
+// func saveConfig() {
 
-}
+// }
 
 func main() {
 	flag.Parse()
