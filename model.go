@@ -40,6 +40,11 @@ func (c *Config) init(path string) error {
 	if path == "" {
 		return fmt.Errorf("[Remote File Sender] Config File Path is Not Setup")
 	}
+
+	if !pathExists(path) {
+		path = os.Getenv("RFS_CONFIG")
+	}
+
 	f, err := os.Open(path)
 	if err != nil {
 		if os.IsNotExist(err) {
