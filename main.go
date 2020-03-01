@@ -225,6 +225,10 @@ func sendFiles(config *Config) {
 				client.MkdirAll(file.Dest)
 
 				for _, f := range files {
+					if isDir(file.Src) {
+						continue
+					}
+
 					srcPath := filepath.Join(file.Src, f.Name())
 					srcFile, err := os.Open(srcPath)
 					if err != nil {
