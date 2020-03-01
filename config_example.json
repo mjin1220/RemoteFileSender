@@ -10,10 +10,12 @@
     ],
     "files": [
         {
+            "name": "testName1",
             "src": "test",
             "dest": "/home/mjin/test"
         },
         {
+            "name": "testName2",
             "src": "testFile1",
             "dest": "/home/mjin/testFile1"
         }

@@ -31,6 +31,7 @@ type Files []*File
 
 // File is a struct
 type File struct {
+	Name       string `json:"name"`
 	Src        string `json:"src"`
 	Dest       string `json:"dest"`
 	isSelected bool
@@ -85,8 +86,8 @@ func (fs Files) String() string {
 
 	buf.WriteString(fmt.Sprintf("%2s%d. %s\n", "", 2, "Select Files"))
 	buf.WriteString(uiLine)
-	buf.WriteString(fmt.Sprintf("%3s  %3s %s\n", "*", "No.", "Source File Path"))
-	buf.WriteString(fmt.Sprintf("%3s  %3s %s\n", "", "", "Destination File Path"))
+	buf.WriteString(fmt.Sprintf("%3s  %3s  %-20s %s\n", "*", "No.", "Name", "Source File Path"))
+	buf.WriteString(fmt.Sprintf("%3s  %3s  %-20s %s\n", "", "", "", "Destination File Path"))
 	buf.WriteString(uiLine)
 
 	for i, f := range fs {
@@ -94,8 +95,8 @@ func (fs Files) String() string {
 		if f.isSelected {
 			prefix = "*"
 		}
-		buf.WriteString(fmt.Sprintf("  %1s [%2d] %s\n", prefix, i+1, f.Src))
-		buf.WriteString(fmt.Sprintf("  %1s  %2s  %s\n", " ", " ", f.Dest))
+		buf.WriteString(fmt.Sprintf("  %1s [%2d]  %-20s %s\n", prefix, i+1, f.Name, f.Src))
+		buf.WriteString(fmt.Sprintf("  %1s  %2s   %-20s %s\n\n", "", "", "", f.Dest))
 	}
 
 	buf.WriteString("\n")
